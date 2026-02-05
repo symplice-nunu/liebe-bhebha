@@ -199,11 +199,17 @@ const App: React.FC = () => {
         </div>
 
         {/* Records Table */}
+        <div className="mb-2 text-sm text-gray-600">
+          Showing {filteredRecords.length} {filteredRecords.length === 1 ? 'record' : 'records'}
+        </div>
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    #
+                  </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     English
                   </th>
@@ -222,8 +228,11 @@ const App: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredRecords.map((record) => (
+                {filteredRecords.map((record, index) => (
                   <tr key={record.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {index + 1}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{record.name}</div>
                     </td>
