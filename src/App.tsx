@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from './firebase';
 import { collection, addDoc, updateDoc, doc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { Toaster, toast } from 'react-hot-toast';
-import { Edit2, Plus, Search } from 'lucide-react';
+import { Edit2, Plus, Search, Copy } from 'lucide-react';
 // import { Trash2 } from 'lucide-react';
 
 interface Record {
@@ -342,15 +342,54 @@ const App: React.FC = () => {
               <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div className="sm:col-span-2 p-4 rounded-xl bg-blue-50/50 border border-blue-100">
                   <dt className="text-xs font-medium text-blue-600 uppercase tracking-wider">English</dt>
-                  <dd className="mt-1.5 text-base font-semibold text-gray-900">{selectedRecord.name}</dd>
+                  <dd className="mt-1.5 flex items-center gap-2">
+                    <span className="text-base font-semibold text-gray-900">{selectedRecord.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(selectedRecord.name);
+                        toast.success('Copied to clipboard');
+                      }}
+                      className="p-1 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-100/50 transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      <Copy className="w-4 h-4" />
+                    </button>
+                  </dd>
                 </div>
                 <div className="p-4 rounded-xl bg-gray-50/80 border border-gray-100">
                   <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">Singular</dt>
-                  <dd className="mt-1.5 text-sm text-gray-900">{selectedRecord.singular || '—'}</dd>
+                  <dd className="mt-1.5 flex items-center gap-2">
+                    <span className="text-sm text-gray-900">{selectedRecord.singular || '—'}</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(selectedRecord.singular || '');
+                        toast.success('Copied to clipboard');
+                      }}
+                      className="p-1 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-100/50 transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      <Copy className="w-4 h-4" />
+                    </button>
+                  </dd>
                 </div>
                 <div className="p-4 rounded-xl bg-gray-50/80 border border-gray-100">
                   <dt className="text-xs font-medium text-gray-500 uppercase tracking-wider">Plural</dt>
-                  <dd className="mt-1.5 text-sm text-gray-900">{selectedRecord.plural || '—'}</dd>
+                  <dd className="mt-1.5 flex items-center gap-2">
+                    <span className="text-sm text-gray-900">{selectedRecord.plural || '—'}</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(selectedRecord.plural || '');
+                        toast.success('Copied to clipboard');
+                      }}
+                      className="p-1 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-100/50 transition-colors"
+                      title="Copy to clipboard"
+                    >
+                      <Copy className="w-4 h-4" />
+                    </button>
+                  </dd>
                 </div>
               </dl>
             </div>
